@@ -1,4 +1,3 @@
-import { filterProperties } from "@turf/turf";
 import React from "react";
 import styled from "styled-components";
 

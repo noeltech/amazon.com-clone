@@ -1,61 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+import useQuery from "../../../../hooks/useQuery";
+import { productApi } from "../../../../services/api/productApi";
 
 import ProductOverview from "../ProductOverview";
-
-const options = {
-  method: "GET",
-  url: "https://amazon23.p.rapidapi.com/product-search",
-  params: { query: "laptop", country: "US" },
-  headers: {
-    "X-RapidAPI-Key": "068a7239a1mshc2e4af13ba0381ap1b94dfjsn13439ab4383f",
-    "X-RapidAPI-Host": "amazon23.p.rapidapi.com",
-  },
-};
+import ProductBlankDisplay from "../ProductBlankDisplay";
 
 const ProductDisplay = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { data, isLoading, error } = useQuery(productApi.fetchAll);
 
-  useEffect(() => {
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        const result = response.data.result;
-        setProducts(result);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  const DisplayBlankItems = () => {
+    let blankDisplay = [];
+    for (let index = 0; index < 30; index++) {
+      blankDisplay.push(<ProductBlankDisplay key={index} />);
+    }
+    return blankDisplay;
+  };
 
-    return () => {};
-  }, []);
-
-  let listOfProducts;
-
-  useEffect(() => {
-    if (!products) return;
-    listOfProducts = products.map((item) => (
+  const DisplayItems = (data) => {
+    return data.map((item, index) => (
       <li key={item.title}>
-        <ProductOverview title={item.title} />
+        <ProductOverview title={item.title} imgSrc={item.image} />
       </li>
     ));
-
-    return () => {};
-  }, [products]);
+  };
 
   return (
     <Wrapper>
       <ListContainer>
-        {products
-          ? products.map((item) => (
-              <li key={item.title}>
-                <ProductOverview title={item.title} imgSrc={item.thumbnail} />
-              </li>
-            ))
-          : null}
+        {isLoading ? DisplayBlankItems() : data ? DisplayItems(data) : null}
       </ListContainer>
     </Wrapper>
   );

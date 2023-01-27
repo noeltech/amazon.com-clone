@@ -26,8 +26,8 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid grey;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  /* border-bottom: 1px solid grey; */
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
   padding: 12px;
 `;
 
