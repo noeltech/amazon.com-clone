@@ -81,6 +81,8 @@ const Title = styled.span`
   color: var(--clr-text-light-500);
   text-align: left;
   white-space: nowrap;
+  font-size: 12px;
+  color: grey;
 `;
 
 const CountryText = styled.span`
@@ -91,4 +93,6 @@ const CountryText = styled.span`
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
 `;
