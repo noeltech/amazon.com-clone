@@ -1,13 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import useQuery from "../../../../hooks/useQuery";
-import { productApi } from "../../../../services/api/productApi";
+import { useQuery } from "@tanstack/react-query";
+
+import { client } from "../../../../utils/api-client";
 
 import ProductOverview from "../ProductOverview";
 import ProductBlankDisplay from "../ProductBlankDisplay";
 
 const ProductDisplay = () => {
-  const { data, isLoading, error } = useQuery(productApi.fetchAll);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: () =>
+      client("products?limit=20").then(
+        (data) => {
+          console.log(data);
+          return data;
+        },
+        (error) => console.log(error)
+      ),
+    refetchOnWindowFocus: false,
+  });
 
   const DisplayBlankItems = () => {
     let blankDisplay = [];
@@ -19,9 +31,9 @@ const ProductDisplay = () => {
 
   const DisplayItems = (data) => {
     return data.map((item, index) => (
-      <li key={item.title}>
+      <List key={item.title}>
         <ProductOverview title={item.title} imgSrc={item.image} />
-      </li>
+      </List>
     ));
   };
 
@@ -42,7 +54,19 @@ const Wrapper = styled.div`
 
 const ListContainer = styled.ul`
   display: flex;
-  flex-direction: row;
+
   flex-wrap: wrap;
-  gap: 10px;
+`;
+
+const List = styled.li`
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+  width: 33.33333%;
+  @media (min-width: 1200px) {
+    width: 25%;
+  }
+  @media (min-width: 1500px) {
+    width: 20%;
+  }
 `;

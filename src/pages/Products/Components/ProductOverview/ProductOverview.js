@@ -19,21 +19,15 @@ export default ProductOverview;
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 300px;
 `;
 
 const ProductImage = styled.img`
   width: 100%;
-  max-width: 300px;
-  height: auto;
-  max-height: 260px;
+  height: 250px;
 `;
 
 const ImageWrapper = styled.div`
-  height: 260px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
+  width: 100%;
   /* background: #000;
   opacity: 0.04;
   background-blend-mode: multiply; */

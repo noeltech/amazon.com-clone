@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ResultBar from "./Components/ResultBar";
 import ProductDisplay from "./Components/ProductDisplay";
 import ProductFilter from "./Components/ProductFilter";
+
+const queryClient = new QueryClient();
 
 const Products = () => {
   return (
@@ -12,7 +14,9 @@ const Products = () => {
         <ResultBar />
         <Grid>
           <ProductFilter />
-          <ProductDisplay />
+          <QueryClientProvider client={queryClient}>
+            <ProductDisplay />
+          </QueryClientProvider>
         </Grid>
       </ContentWrapper>
     </Wrapper>
@@ -42,5 +46,8 @@ const Grid = styled.div`
 
   padding-top: 1rem;
 
+  @media (max-width: 1600px) {
+    width: 100%;
+  }
   /* max-width: 100vw; */
 `;
