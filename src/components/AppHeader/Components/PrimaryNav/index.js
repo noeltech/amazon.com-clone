@@ -19,6 +19,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   background: var(--clr-secondary);
-  width: min(99%, 1400px);
+  width: min(99%, 1600px);
   margin-inline: auto;
+  box-sizing: border-box;
 `;

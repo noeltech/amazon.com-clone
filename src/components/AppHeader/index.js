@@ -96,13 +96,13 @@ const ContentWrapper = styled.div`
 const PrimaryNavContainer = styled.div`
   background: var(--clr-secondary);
   width: 100%;
-  overflow: hidden;
-  overflow-x: scroll;
+  /* overflow: hidden; */
+  /* overflow-x: scroll;
 
   &::-webkit-scrollbar {
     width: 0 !important;
     display: none;
   }
   overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
+  -ms-overflow-style: none; */
 `;
