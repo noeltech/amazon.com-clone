@@ -113,8 +113,8 @@ const HeroWidgetContainer = styled.section`
   min-width: 1000px;
   width: 100%;
   height: 320px;
-  /* position: relative;
-  overflow: hidden; */
+  position: relative;
+  /* overflow: hidden; */
   display: flex;
   justify-content: center;
 `;

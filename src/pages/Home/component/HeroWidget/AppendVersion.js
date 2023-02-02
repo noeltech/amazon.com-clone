@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FaClosedCaptioning } from "react-icons/fa";
+
 import styled from "styled-components";
 
 const HeroImage = styled.img`
@@ -47,28 +47,6 @@ const HeroWidget = () => {
   const sliderRef = useRef();
 
   const { moveSlide, direction, isTransition, slides } = slideState;
-
-  console.log("render");
-
-  //   useEffect(() => {
-  //     console.log("hello");
-  //     if (!isTransitionEnd) {
-  //       return;
-  //     }
-  //     const newArray = newSlides;
-  //     newArray.push(newArray.shift());
-  //     setNewSlides(newArray);
-
-  //     setSlideState({
-  //       ...slideState,
-  //       isTransition: false,
-  //       moveSlide: "translate(0)",
-  //     });
-
-  //     setIsTransitionEnd(false);
-
-  //     return () => {};
-  //   }, [isTransitionEnd]);
 
   // Handle NEXT Slide Button
   const handleNextSlide = () => {
@@ -168,15 +146,20 @@ export default HeroWidget;
 
 const Wrapper = styled.div`
   position: relative;
-  width: 400px;
+  width: 100%;
+  max-width: 1400px;
+  min-width: 1000px;
   height: 320px;
+
+  z-index: 1;
 `;
 
 const Container = styled.section`
-  width: 400px;
-  height: 320px;
+  width: 100%;
+  height: 600px;
   margin: 20px auto;
   position: absolute;
+  overflow-x: hidden;
   top: 0;
   left: 0;
 `;
@@ -184,8 +167,7 @@ const Container = styled.section`
 const Carousel = styled.div`
   width: 100%;
   height: 100%;
-  border: 2px solid orange;
-  border-radius: 3px;
+
   display: flex;
   justify-content: ${(props) =>
     props.direction === "right" ? "flex-start" : "flex-end"};
@@ -195,7 +177,7 @@ const Slider = styled.div`
   width: 400%;
   height: 100%;
   display: flex;
-  border: 1px solid green;
+
   flex-shrink: 0;
   transition: ${(props) => (props.isTransition ? "all 0.5s" : `none`)};
   transform: ${(props) => props.moveSlide && props.moveSlide};
