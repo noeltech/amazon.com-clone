@@ -10,6 +10,7 @@ import SignUpLink from "./Components/SignUpLink";
 import ReturnsAndOrderLink from "./Components/ReturnsAndOrderLink";
 import CartNav from "./Components/CartNav";
 import FlyOutAnchor from "./Components/FlyOutAnchor/FlyOutAnchor";
+import ScreenOverlay from "./Components/ScreenOverlay";
 
 import MobileHeaderNav from "./Components/MobileHeaderNav";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
@@ -19,7 +20,7 @@ function AppHeader(props) {
   //CHECK IF DESKTOP WIDE
   let isMobile = useMediaQuery("(min-width:768px");
   const [isLanguageSelectHovered, setisLanguageSelectHovered] = useState(false);
-
+  const [isOverlayOpen, setOverlayOpen] = useState(false);
   const ref = useRef();
 
   const handleLanguagePickerNavHovered = () => {
@@ -43,7 +44,7 @@ function AppHeader(props) {
             </LeftItemContainer>
           ) : null}
 
-          <HeaderSearchBar />
+          <HeaderSearchBar setOverlay={setOverlayOpen} />
           {isMobile ? (
             <>
               <LanguagePickerNav
@@ -64,6 +65,7 @@ function AppHeader(props) {
       <PrimaryNavContainer>
         <PrimaryNav />
       </PrimaryNavContainer>
+      <ScreenOverlay isVisible={isOverlayOpen} />
     </Header>
   );
 }

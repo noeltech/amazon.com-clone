@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { LinkWrapper } from "../Common";
 
 const navList = [
-  { path: "/", label: "Todays Deal" },
-  { path: "/", label: "Customer Service" },
-  { path: "/", label: "Registry" },
-  { path: "/", label: "Gift Cards" },
-  { path: "/", label: "Sell" },
-  { path: "/", label: "Extra Link Here" },
+  { path: "products", label: "Todays Deal" },
+  { path: "products", label: "Customer Service" },
+  { path: "products", label: "Registry" },
+  { path: "products", label: "Gift Cards" },
+  { path: "products", label: "Sell" },
+  { path: "products", label: "Extra Link Here" },
 ];
 
 const Nav = () => {
   const NavLinks = navList.map((item) => {
     return (
       // <NavItem key={item.label}>
-      <Link key={item.path} to={item.path}>
+      <Link key={item.label} to={item.path}>
         {item.label}
       </Link>
       // </NavItem>

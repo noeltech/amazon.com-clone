@@ -5,13 +5,13 @@ import SearchInput from "./SearchInput";
 import SearchButton from "./SearchButton";
 import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 
-const HeaderSearchBar = () => {
+const HeaderSearchBar = ({ setOverlay }) => {
   let isMobile = useMediaQuery("(min-width:768px");
   return (
     <Container>
       <ContentWrapper>
         {isMobile ? <CategorySelectorButton /> : null}
-        <SearchInput></SearchInput>
+        <SearchInput setOverlay={setOverlay}></SearchInput>
         <SearchButton />
       </ContentWrapper>
     </Container>

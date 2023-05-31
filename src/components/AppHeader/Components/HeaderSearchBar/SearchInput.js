@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchInput = () => {
-  return <Input></Input>;
+const SearchInput = ({ setOverlay }) => {
+  const handleOnFocus = function () {
+    setOverlay(true);
+  };
+  const handleOnBlur = function () {
+    setOverlay(false);
+  };
+  return <Input onFocus={handleOnFocus} onBlur={handleOnBlur}></Input>;
 };
 
 export default SearchInput;

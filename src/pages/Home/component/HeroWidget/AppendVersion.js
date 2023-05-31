@@ -116,7 +116,7 @@ const HeroWidget = () => {
     sliderRef.current.addEventListener("transitionend", handleTransitionEnd);
 
     return () => {
-      sliderRef.current.removeEventListener(
+      sliderRef.current?.removeEventListener(
         "transitionend",
         handleTransitionEnd
       );

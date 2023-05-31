@@ -32,13 +32,20 @@ const ProductDisplay = () => {
   const DisplayItems = (data) => {
     return data.map((item, index) => (
       <List key={item.title}>
-        <ProductOverview title={item.title} imgSrc={item.image} />
+        <ProductOverview
+          title={item.title}
+          imgSrc={item.image}
+          rating={item.rating}
+          price={item.price}
+          id={item.id}
+        />
       </List>
     ));
   };
 
   return (
     <Wrapper>
+      <ResultsHeader>Results</ResultsHeader>
       <ListContainer>
         {isLoading ? DisplayBlankItems() : data ? DisplayItems(data) : null}
       </ListContainer>
@@ -51,6 +58,7 @@ export default ProductDisplay;
 const Wrapper = styled.div`
   width: 100%;
 `;
+const ResultsHeader = styled.h3``;
 
 const ListContainer = styled.ul`
   display: flex;
